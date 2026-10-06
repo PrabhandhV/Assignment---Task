@@ -13,11 +13,8 @@ Fixed (details in handwritten/):
 9. Added id DESC as a sort tie-breaker for stable pagination.
 10. Small cleanups: removed debug console.log, PAGE_SIZE constant, aria-labels.
 
-Extras: priority and assignee filters (backend + UI) and colour-coded priority badges.
-
-## Assumptions
-- "Assignee" filter uses exact match; its options are hardcoded in the UI.
-- Out-of-range page/pageSize are clamped rather than rejected.
+## Extra Implementations 
+- priority and assignee filters (backend + UI) and colour-coded priority badges.
 
 ## Not changed
 - Pagination is still done in memory.
