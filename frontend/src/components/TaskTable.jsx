@@ -33,7 +33,13 @@ export default function TaskTable({ tasks, loading, error }) {
             <td>
               <span className={`status-badge ${task.status.toLowerCase()}`}>{task.status}</span>
             </td>
-            <td>{task.priority}</td>
+            <td>
+              {task.priority ? (
+                <span className={`priority-badge ${task.priority.toLowerCase()}`}>{task.priority}</span>
+              ) : (
+                '\u2014'
+              )}  
+            </td>
             <td>{task.assignee || '\u2014'}</td>
           </tr>
         ))}

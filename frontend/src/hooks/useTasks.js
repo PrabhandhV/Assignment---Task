@@ -1,25 +1,35 @@
 import { useState, useEffect } from 'react';
 import { fetchTasks } from '../api';
 
-export function useTasks(query, status, page, pageSize) {
+export function useTasks(query, status, priority, assignee, page, pageSize) {
   const [tasks, setTasks] = useState([]);
   const [total, setTotal] = useState(0);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
   useEffect(() => {
+    let ignore = false;
     setLoading(true);
+    setError(null);
 
-    fetchTasks({ query, status, page, pageSize })
+    fetchTasks({ query, status, priority, assignee, page, pageSize })
       .then((data) => {
+        if (ignore) return;
         setTasks(data.items);
         setTotal(data.total);
-        setLoading(false);
       })
       .catch((err) => {
+        if (ignore) return;
         setError(err.message);
+      })
+      .finally(() => {
+        if (!ignore) setLoading(false);
       });
-  }, [query, status, page, pageSize]);
+
+    return () => {
+      ignore = true;
+    };
+  }, [query, status, priority, assignee, page, pageSize]);
 
   return { tasks, total, loading, error };
 }

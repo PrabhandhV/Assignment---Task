@@ -1,14 +1,16 @@
 const API_BASE = '/api';
 
-export async function fetchTasks({ query = '', status = '', page = 1, pageSize = 10 }) {
+export async function fetchTasks({ query = '', status = '', priority = '', assignee = '', page = 1, pageSize = 10 }) {
   const params = new URLSearchParams();
   if (query) params.set('q', query);
   if (status) params.set('status', status);
+  if (priority) params.set('priority', priority);
+  if (assignee) params.set('assignee', assignee);
   params.set('page', String(page));
   params.set('pageSize', String(pageSize));
 
   const url = `${API_BASE}/tasks?${params.toString()}`;
-  console.log('[api] fetching:', url);
+  // console.log('[api] fetching:', url);
 
   const response = await fetch(url);
 
