@@ -18,7 +18,7 @@ Fixed (details in handwritten/):
 
 ## Not changed
 - Pagination is still done in memory.
-- Oracle file: escaping of the search input and new filters not mirrored; still uses ROWNUM.
+- Oracle file: new priority/assignee filters not mirrored; still uses ROWNUM.
 - Hardcoded CORS origin, show-sql, H2 console, println logging, no tests.
 
 ## Biggest remaining risk
